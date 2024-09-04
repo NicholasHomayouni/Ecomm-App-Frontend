@@ -10,7 +10,7 @@ interface Product {
 }
 
 export default async function Home() {
-  let data = await fetch('http://localhost:8080/api/products/all');
+  let data = await fetch('http://localhost:8080/api/products/all', { cache: "no-store" });
   let response = await data.json();
   let products = response.data || response;
  // console.log(products);
@@ -18,8 +18,9 @@ export default async function Home() {
     <div>
       <ul>
         {Array.isArray(products) ? (
-          products.map((product: any) => (
-            <li key={product.productId}>{product.productId} {product.name}</li>
+          products.map((product: Product) => (
+            <li key={product.productId}>
+              {product.productId} {product.name} {product.price} {product.quantity} {product.description}</li>
           ))
         ) : (
           <p>No products available</p>
