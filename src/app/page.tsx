@@ -1,32 +1,12 @@
 import Image from "next/image";
-
-interface Product {
-  productId: number;
-  name: string;
-  price: number;
-  quantity: number;
-  description: string;
-  creationDate: string;
-}
+import ProductPage from "./products/page";
 
 export default async function Home() {
-  let data = await fetch('http://localhost:8080/api/products/all', { cache: "no-store" });
-  let response = await data.json();
-  let products = response.data || response;
- // console.log(products);
+
   return (
-    <div>
-      <ul>
-        {Array.isArray(products) ? (
-          products.map((product: Product) => (
-            <li key={product.productId}>
-              {product.productId} {product.name} {product.price} {product.quantity} {product.description}</li>
-          ))
-        ) : (
-          <p>No products available</p>
-        )}
-      </ul>
-    </div>
+    <main>
+      <ProductPage />
+    </main>
     // <main className="flex min-h-screen flex-col items-center justify-between p-24">
     //   <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
     //     <a
