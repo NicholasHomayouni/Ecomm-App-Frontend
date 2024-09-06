@@ -1,11 +1,4 @@
-interface Product {
-    productId: number;
-    name: string;
-    price: number;
-    quantity: number;
-    description: string;
-    creationDate: string;
-}
+import { Product } from '../models/Product';
 
 export default async function ProductPage() {
     let data = await fetch('http://localhost:8080/api/products/all', { cache: "no-store" });
@@ -13,17 +6,15 @@ export default async function ProductPage() {
     let products = response.data || response;
     // console.log(products);
     return (
-        <div>
-            <ul>
-                {Array.isArray(products) ? (
-                    products.map((product: Product) => (
-                        <li key={product.productId}>
-                            {product.productId} {product.name} {product.price} {product.quantity} {product.description}</li>
-                    ))
-                ) : (
-                    <p>No products available</p>
-                )}
-            </ul>
+        <div className="grid grid-cols-3 gap-6 p-4">
+            {products.map((product: Product) => (
+                <div key={product.productId} className="border rounded-lg p-4 shadow-md text-center">
+                    <h2 className="text-lg font-semibold">{product.name}</h2>
+                    <p className="text-sm text-gray-600">{product.description}</p>
+                    <p className="text-xl font-bold mt-2">${product.price}</p>
+                    <p className="text-green-600 font-semibold">IN STOCK</p> 
+                </div>
+            ))}
         </div>
     );
 }
