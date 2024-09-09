@@ -1,4 +1,6 @@
 import { Product } from '../../models/Product';
+import Image from "next/image";
+
 
 type Params = {
     params: {
@@ -15,6 +17,13 @@ export default async function MarineFishSubcategoryPage({ params }: Params) {
         <div className="grid grid-cols-3 gap-6 p-4">
             {marineFish.map((marinefish: Product) => (
                 <div key={marinefish.productId} className="border rounded-lg p-4 shadow-md text-center">
+                    <Image 
+                      src={marinefish.imageUrl || '/images/default.jpg'}
+                      alt={marinefish.name}
+                      width={400}
+                      height={300}
+                      className="w-full h-32 object-cover mb-2"
+                    />
                     <h2 className="text-lg font-semibold">{marinefish.name}</h2>
                     <p className="text-sm text-gray-600">{marinefish.description}</p>
                     <p className="text-xl font-bold mt-2">${marinefish.price}</p>

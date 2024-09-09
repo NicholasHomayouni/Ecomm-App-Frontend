@@ -7,4 +7,5 @@ export interface Product {
     creationDate: string;
     category: string;
     subcategory: string;
+    imageUrl: string;
 }
