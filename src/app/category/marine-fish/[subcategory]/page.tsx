@@ -24,9 +24,9 @@ export default async function MarineFishSubcategoryPage({ params }: Params) {
                       height={300}
                       className="w-full h-32 object-cover mb-2"
                     />
-                    <h2 className="text-lg font-semibold">{marinefish.name}</h2>
+                    <h2 className="text-black text-lg font-semibold">{marinefish.name}</h2>
                     <p className="text-sm text-gray-600">{marinefish.description}</p>
-                    <p className="text-xl font-bold mt-2">${marinefish.price}</p>
+                    <p className="text-black text-xl font-bold mt-2">${marinefish.price}</p>
                     <p className="text-green-600 font-semibold">IN STOCK</p>
                 </div>
             ))}
