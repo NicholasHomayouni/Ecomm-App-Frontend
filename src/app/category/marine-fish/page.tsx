@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Define the type for subcategory objects
 interface Subcategory {
   subcategory: string;
   imageUrl: string;
@@ -14,8 +13,8 @@ export default async function MarineFishPage() {
 
   return (
     <div>
-      <div className="bg-red-600 text-white p-6 flex items-center justify-between">
-        <h1 className="text-4xl font-bold">Marine Fish on Sale!</h1>
+      <div className="bg-red-600 text-white p-6 flex flex-col md:flex-row items-center justify-center gap-4">
+        <h1 className="text-4xl font-bold text-center">Marine Fish on Sale!</h1>
         <button className="bg-yellow-400 text-black font-semibold py-2 px-4 rounded shadow-md hover:bg-yellow-500">
           Shop now ➔
         </button>
@@ -24,8 +23,8 @@ export default async function MarineFishPage() {
         <h2 className="text-3xl font-bold text-gray-800">Marine Fish</h2>
         <p className="text-gray-700 mt-2">
           No one offers a better selection of healthy marine fish for the saltwater aquarium
-          than LiveAquaria®. From angels, to clownfish, gobies, tangs, wrasse and more... The finest specimens
-          in the world are just a click away. Whether you’re a beginner or a seasoned hobbyist, find quality aquatic life for marine aquarium when you shop LiveAquaria®.
+          than FishStore®. From angels, to clownfish, gobies, tangs, wrasse and more... The finest specimens
+          in the world are just a click away. Whether you’re a beginner or a seasoned hobbyist, find quality aquatic life for marine aquarium when you shop FishStore®.
           <a href="#" className="text-blue-600 underline">Visit our Diver's Den ></a>
         </p>
       </div>
