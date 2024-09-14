@@ -22,8 +22,9 @@ export default async function MarineFishSubcategoryPage({ params }: Params) {
                         <Image
                             src={marinefish.imageUrl || '/images/default.jpg'}
                             alt={marinefish.name}
-                            width={400}
-                            height={300}
+                            width={200}
+                            height={100}
+                            layout="responsive"
                             className="w-full h-32 object-cover mb-2"
                         />
                         <h2 className="text-black text-lg font-semibold">{marinefish.name}</h2>
