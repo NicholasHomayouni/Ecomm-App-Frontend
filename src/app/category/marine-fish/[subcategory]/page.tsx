@@ -1,5 +1,6 @@
-import { Product } from '../models/Product';
+import { Product } from "@/app/models/Product";
 import Image from "next/image";
+import Link from 'next/link';
 
 
 type Params = {
@@ -16,19 +17,21 @@ export default async function MarineFishSubcategoryPage({ params }: Params) {
     return (
         <div className="grid grid-cols-3 gap-6 p-4">
             {marineFish.map((marinefish: Product) => (
-                <div key={marinefish.productId} className="border rounded-lg p-4 shadow-md text-center">
-                    <Image 
-                      src={marinefish.imageUrl || '/images/default.jpg'}
-                      alt={marinefish.name}
-                      width={400}
-                      height={300}
-                      className="w-full h-32 object-cover mb-2"
-                    />
-                    <h2 className="text-black text-lg font-semibold">{marinefish.name}</h2>
-                    <p className="text-sm text-gray-600">{marinefish.description}</p>
-                    <p className="text-black text-xl font-bold mt-2">${marinefish.price}</p>
-                    <p className="text-green-600 font-semibold">IN STOCK</p>
-                </div>
+                <Link href={`/category/marine-fish/${subcategory}/${marinefish.productId}`} key={marinefish.productId}>
+                    <div key={marinefish.productId} className="border rounded-lg p-4 shadow-md text-center">
+                        <Image
+                            src={marinefish.imageUrl || '/images/default.jpg'}
+                            alt={marinefish.name}
+                            width={400}
+                            height={300}
+                            className="w-full h-32 object-cover mb-2"
+                        />
+                        <h2 className="text-black text-lg font-semibold">{marinefish.name}</h2>
+                        <p className="text-sm text-gray-600">{marinefish.description}</p>
+                        <p className="text-black text-xl font-bold mt-2">${marinefish.price}</p>
+                        <p className="text-green-600 font-semibold">IN STOCK</p>
+                    </div>
+                </Link>
             ))}
         </div>
     );
