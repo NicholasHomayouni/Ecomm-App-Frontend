@@ -46,11 +46,10 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     </p>
                 </div>
 
-                {/*right column */}
                 {/* Right Column - Product Details */}
                 <div className="flex-1">
                     <h1 className="text-2xl font-bold text-gray-800">{product.name}</h1>
-                    <p className="italic text-gray-500 mt-1">{product.scientificName}</p>
+                    {/* <p className="italic text-gray-500 mt-1">{product.scientificName}</p> */}
                     <p className="text-3xl font-semibold text-gray-900 mt-2">${product.price.toFixed(2)}</p>
 
                     {/* Product Selection */}
@@ -63,7 +62,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
 
                     {/* Quantity Selection */}
                     <div className="flex items-center mt-4">
-                        <label className="mr-4 font-semibold">Enter Quantity:</label>
+                        <label className="mr-4 font-semibold text-blue-600">Enter Quantity:</label>
                         <div className="flex items-center border border-gray-300 rounded">
                             <button className="px-2 text-gray-700">-</button>
                             <input
@@ -94,6 +93,47 @@ export default async function ProductDetailPage({ params }: { params: { productI
                     </div>
                 </div>
             </div>
+            {/* Quick Stats Section */}
+            <div className="mt-8">
+                <h2 className="text-2xl font-bold mb-4 text-blue-600">Quick Stats</h2>
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {/* {product.quickStats.map((stat, index) => (
+                        <div key={index} className="border p-4 bg-gray-100 rounded">
+                            <p className="font-semibold">{stat.title}</p>
+                            <p className="text-gray-700">{stat.value}</p>
+                        </div>
+                    ))} */}
+                </div>
+            </div>
+
+            {/* Overview Section */}
+            <div className="mt-8">
+                <h2 className="text-2xl font-bold mb-2 text-blue-600">Overview</h2>
+                {/* <p className="text-gray-700 mb-4">{product.overview}</p>
+                <p className="text-sm text-gray-600 italic">
+                    Approximate Purchase Size: {product.purchaseSize}
+                </p> */}
+            </div>
+
+            {/* Supplies Section */}
+            <div className="mt-8">
+                <h2 className="text-2xl font-bold mb-4 text-blue-600">Supplies You May Be Interested In</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {/* {product.supplies.map((supply, index) => (
+                        <div key={index} className="flex flex-col items-center">
+                            <Image
+                                src={supply.imageUrl}
+                                alt={supply.name}
+                                width={100}
+                                height={100}
+                                className="object-cover rounded"
+                            />
+                            <p className="mt-2 text-center text-gray-700">{supply.name}</p>
+                        </div>
+                    ))} */}
+                </div>
+            </div>
         </div>
+
     );
 }

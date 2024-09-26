@@ -1,4 +1,11 @@
+'use client'
+
+import { useState } from 'react';
+import Link from 'next/link';
+
 export default function Navbar() {
+    const [searchTerm, setSearchTerm] = useState('');
+
     return (
         <div className="bg-[#023E58]">
             <header className="shadow-md py-4 px-6 flex justify-between items-center">
@@ -13,9 +20,26 @@ export default function Navbar() {
                         </ul>
                     </nav>
                 </div>
-                <input type="text" placeholder="Search for products..." className="border rounded-md px-3 py-1 text sm" />
+                <form onSubmit={(e) => {e.preventDefault();}}>
+                    <input
+                        type="text"
+                        placeholder="Search for products..."
+                        className="border rounded-md px-3 py-1 text sm text-black"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <Link href={`/search?query=${encodeURIComponent(searchTerm)}`}>
+                        <button
+                            type="submit"
+                            className="bg-blue-500 text-white px-4 py-1 rounded-md"
+                        >
+                            Search
+                        </button>
+                    </Link>
 
+                </form>
             </header>
+
         </div>
 
     )
