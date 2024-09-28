@@ -1,10 +1,34 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Product } from '../models/Product';
 
 export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+
+    
+    const [selectedSuggestion, setSelectedSuggestion] = useState('');
+
+    const handleInputChange = (e: any) => {
+        setSearchTerm(e.target.value);
+    }
+
+    const handleClick = (suggestion: any) => {
+        setSelectedSuggestion(suggestion);
+        setSearchTerm(suggestion.name);
+    }
+
+    useEffect(() => {
+        if (searchTerm) {
+            fetch(`http://localhost:8080/api/products/suggestions?query=${searchTerm}`)
+                .then((res) => res.json())
+                .then((data) => setSuggestions(data));
+        } else {
+            setSuggestions([]);
+        }
+    }, [searchTerm]);
 
 
     return (
@@ -21,24 +45,39 @@ export default function Navbar() {
                         </ul>
                     </nav>
                 </div>
-                <form onSubmit={(e) => {e.preventDefault();}}>
-                    <input
-                        type="text"
-                        placeholder="Search for products..."
-                        className="border rounded-md px-3 py-1 text sm text-black"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <Link href={`/search?query=${encodeURIComponent(searchTerm)}`}>
-                        <button
-                            type="submit"
-                            className="bg-blue-500 text-white px-4 py-1 rounded-md"
-                        >
-                            Search
-                        </button>
-                    </Link>
-
-                </form>
+                <div className="relative">
+                    <form onSubmit={(e) => { e.preventDefault(); }}>
+                        <input
+                            type="text"
+                            placeholder="Search for products..."
+                            className="border rounded-md px-3 py-1 text sm text-black"
+                            value={searchTerm}
+                            onChange={handleInputChange}
+                        />
+                        {suggestions.length > 0 && (
+                            <ul className="absolue z-10 bg-white text-black border rounded-md w-full shadow-lg mt-1 max-h-40 overflow-y-auto">
+                                {suggestions.map((suggestion: any) => (
+                                    <li key={suggestion.productId} className="hover:bg-gray-200 px-3 py-2 cursor-pointer">
+                                        <Link 
+                                            onClick={handleClick}
+                                            href={`/search?query=${encodeURIComponent(suggestion.name)}`}>
+                                            
+                                            {suggestion.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                        <Link href={`/search?query=${encodeURIComponent(searchTerm)}`}>
+                            <button
+                                type="submit"
+                                className="bg-blue-500 text-white px-4 py-1 rounded-md"
+                            >
+                                Search
+                            </button>
+                        </Link>
+                    </form>
+                </div>
             </header>
 
         </div>
