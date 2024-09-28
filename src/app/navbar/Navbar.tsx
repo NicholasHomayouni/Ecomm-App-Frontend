@@ -6,6 +6,7 @@ import Link from 'next/link';
 export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState('');
 
+
     return (
         <div className="bg-[#023E58]">
             <header className="shadow-md py-4 px-6 flex justify-between items-center">
