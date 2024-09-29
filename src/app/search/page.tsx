@@ -27,7 +27,7 @@ export default function SearchPage() {
             {searchResults.length > 0 ? (
                 <div>
                     {searchResults.map((product: any) => (
-                        <Link href={`/category/`} key={product.id}>
+                        <Link href={`/category/${product.category === 'freshwater-fish' ? 'freshwater-fish' : 'marine-fish'}/${encodeURIComponent(product.subcategory)}/${product.productId}`} key={product.id}>
                             <div key={product.id} className="border rounded-lg p-4 shadow-md text-center">
                                 <Image
                                     src={product.imageUrl || '/images/default.jpg'}
