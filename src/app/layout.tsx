@@ -21,6 +21,9 @@ export default function RootLayout({
         <div className="bg-gray-100 min-h-screen">
           <Navbar />
           {children}
+          <footer className="bg-gray-800 text-white py-6 text-center">
+            <p>© 2024 FishStore. All rights reserved.</p>
+          </footer>
         </div>
       </body>
     </html>

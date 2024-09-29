@@ -7,7 +7,7 @@ interface Subcategory {
 }
 
 export default async function MarineFishPage() {
-  const response = await fetch('http://localhost:8080/api/categories?category=marine fish', { cache: 'no-store' });
+  const response = await fetch('http://localhost:8080/api/categories/cat?category=marine fish', { cache: 'no-store' });
   const data = await response.json();
   const subcategories: Subcategory[] = Array.isArray(data) ? data : data.subcategories || [];
 

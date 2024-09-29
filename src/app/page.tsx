@@ -53,9 +53,7 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-6 text-center">
-        <p>© 2024 FishStore. All rights reserved.</p>
-      </footer>
+      
     </div>
   );
 }
