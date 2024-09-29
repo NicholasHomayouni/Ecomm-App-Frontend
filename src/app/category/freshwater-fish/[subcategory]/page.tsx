@@ -16,7 +16,7 @@ export default async function FreshwaterFishSubcategoryPage({ params }: Params) 
     let freshwaterFish: Product[] = response.data || response;
     return (
         <div className="grid grid-cols-3 gap-6 p-4">
-            {/* {freshwaterFish.map((freshy: Product) => (
+            {freshwaterFish.map((freshy: Product) => (
                 <Link href={`/category/freshwater-fish/${subcategory}/${freshy.productId}`} key={freshy.productId}>
                     <div key={freshy.productId} className="border rounded-lg p-4 shadow-md text-center">
                         <Image
@@ -33,7 +33,7 @@ export default async function FreshwaterFishSubcategoryPage({ params }: Params) 
                         <p className="text-green-600 font-semibold">IN STOCK</p>
                     </div>
                 </Link>
-            ))} */}
+            ))}
         </div>
     );
 }
