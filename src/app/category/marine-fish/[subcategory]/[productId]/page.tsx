@@ -28,7 +28,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
             </div>
 
             <nav className="text-sm text-blue-600 mt-4">
-                Home &gt; Marine Fish &gt; Captive-Bred Fish &gt; All Captive-Bred Fish &gt; {product.name}
+                Home &gt; Freshwater Fish &gt; Captive-Bred Fish &gt; All Captive-Bred Fish &gt; {product.name}
             </nav>
             <div className="flex flex-col md:flex-row mt-4 gap-6">
                 {/*left column */}

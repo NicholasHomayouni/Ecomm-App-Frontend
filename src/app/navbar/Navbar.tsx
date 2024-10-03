@@ -7,8 +7,7 @@ import { Product } from '../models/Product';
 export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-
-
+    const [lastSearchTerm, setLastSearchTerm] = useState('');
     const [selectedSuggestion, setSelectedSuggestion] = useState('');
 
     const handleInputChange = (e: any) => {
@@ -17,8 +16,22 @@ export default function Navbar() {
 
     const handleClick = (suggestion: any) => {
         setSelectedSuggestion(suggestion);
-        setSearchTerm(suggestion.name);
+        setSearchTerm('');
+        setSuggestions([]);
     }
+
+    const handleSearch = () => {
+        if (searchTerm === lastSearchTerm) {
+            setSearchTerm('');
+            setTimeout(() => {
+                setSearchTerm(lastSearchTerm);
+            }, 0);
+        } else {
+            setLastSearchTerm(searchTerm);
+        }
+        setSearchTerm('');
+        setSuggestions([]);
+    };
 
     useEffect(() => {
         if (searchTerm) {
@@ -60,7 +73,7 @@ export default function Navbar() {
                                     {suggestions.map((suggestion: any) => (
                                         <li key={suggestion.productId} className="hover:bg-gray-200 px-3 py-2 cursor-pointer">
                                             <Link
-                                                onClick={handleClick}
+                                                onClick={() => handleClick(suggestion)}
                                                 href={`/search?query=${encodeURIComponent(suggestion.name)}`}>
 
                                                 {suggestion.name}
@@ -74,6 +87,7 @@ export default function Navbar() {
                             <button
                                 type="submit"
                                 className="bg-blue-500 text-white px-4 py-1 rounded-md"
+                                onClick={handleSearch}
                             >
                                 Search
                             </button>
