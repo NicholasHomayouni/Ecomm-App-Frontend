@@ -18,14 +18,14 @@ export default async function MarineFishSubcategoryPage({ params }: Params) {
         <div className="grid grid-cols-3 gap-6 p-4">
             {marineFish.map((marinefish: Product) => (
                 <Link href={`/category/marine-fish/${subcategory}/${marinefish.productId}`} key={marinefish.productId}>
-                    <div key={marinefish.productId} className="border rounded-lg p-4 shadow-md text-center">
+                    <div key={marinefish.productId} className="border border-gray-200 rounded-lg shadow-lg p-4 hover:shadow-2xl h-full">
                         <Image
                             src={marinefish.imageUrl || '/images/default.jpg'}
                             alt={marinefish.name}
                             width={200}
                             height={100}
                             layout="responsive"
-                            className="w-full h-32 object-cover mb-2"
+                            className="w-full h-48 object-cover rounded-t-md"
                         />
                         <h2 className="text-black text-lg font-semibold">{marinefish.name}</h2>
                         <p className="text-sm text-gray-600">{marinefish.description}</p>

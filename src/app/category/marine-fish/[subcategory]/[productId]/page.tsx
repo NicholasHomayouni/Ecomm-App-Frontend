@@ -109,6 +109,7 @@ export default async function ProductDetailPage({ params }: { params: { productI
             {/* Overview Section */}
             <div className="mt-8">
                 <h2 className="text-2xl font-bold mb-2 text-blue-600">Overview</h2>
+                <p className="text-black mb-4">{product.description}</p>
                 {/* <p className="text-gray-700 mb-4">{product.overview}</p>
                 <p className="text-sm text-gray-600 italic">
                     Approximate Purchase Size: {product.purchaseSize}

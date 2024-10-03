@@ -14,7 +14,7 @@ export default function SearchPage() {
     const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
-        if (query) { // if query exists
+        if (query) {
             fetch(`http://localhost:8080/api/products/search?query=${query}`, { cache: "no-store" })
                 .then((res) => res.json())
                 .then((data) => setSearchResults(data));
@@ -22,34 +22,45 @@ export default function SearchPage() {
     }, [query]);
 
     return (
-        <div className="grid grid-cols-3 gap-6 p-4">
+        <div className="p-4">
             <h1 className="text-2xl font-bold mb-4 text-black">Search Results for: {query}</h1>
-            {searchResults.length > 0 ? (
-                <div>
-                    {searchResults.map((product: any) => (
-                        <Link href={`/category/${product.category === 'freshwater-fish' ? 'freshwater-fish' : 'marine-fish'}/${encodeURIComponent(product.subcategory)}/${product.productId}`} key={product.id}>
-                            <div key={product.id} className="border rounded-lg p-4 shadow-md text-center">
-                                <Image
-                                    src={product.imageUrl || '/images/default.jpg'}
-                                    alt={product.name}
-                                    width={200}
-                                    height={100}
-                                    layout="responsive"
-                                    className="w-full h-32 object-cover mb-2"
-                                />
-                                <h2 className="text-black text-lg font-semibold">{product.name}</h2>
-                                <p className="text-sm text-gray-600">{product.description}</p>
-                                <p className="text-black text-xl font-bold mt-2">${product.price}</p>
-                                <p className="text-green-600 font-semibold">IN STOCK</p>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-
-
-            ) : (
-                <p className="text-black">No results found.</p>
-            )}
+            <div className="grid grid-cols-4 gap-6">
+                {searchResults.length > 0 ? (
+                    searchResults.map((product: any) => (
+                        <div key={product.id} className="group relative">
+                            <Link
+                                href={`/category/${product.category === "freshwater-fish"
+                                        ? "freshwater-fish"
+                                        : "marine-fish"
+                                    }/${encodeURIComponent(product.subcategory)}/${product.productId
+                                    }`}
+                            >
+                                <div className="border border-gray-200 rounded-lg shadow-lg p-4 hover:shadow-2xl h-full">
+                                    <Image
+                                        src={product.imageUrl || "/images/default.jpg"}
+                                        alt={product.name}
+                                        width={300}
+                                        height={200}
+                                        className="w-full h-48 object-cover rounded-t-md"
+                                    />
+                                    <div className="text-center mt-4">
+                                        <h2 className="text-black text-lg font-semibold">
+                                            {product.name}
+                                        </h2>
+                                        <p className="text-sm text-gray-600">{product.description}</p>
+                                        <p className="text-black text-xl font-bold mt-2">${product.price}</p>
+                                        <p className={`text-green-600 font-semibold`}>
+                                            {product.isInStock ? "IN STOCK" : "OUT OF STOCK"}
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-black">No results found.</p>
+                )}
+            </div>
         </div>
     );
 }
