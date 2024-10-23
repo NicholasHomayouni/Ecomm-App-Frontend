@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Product } from '../models/Product';
+import { FaShoppingCart } from 'react-icons/fa';
 
 export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -94,9 +95,10 @@ export default function Navbar() {
                         </Link>
                     </form>
                 </div>
+                <div className="flex items-center">
+                    <FaShoppingCart className="text-white text-2xl" />
+                </div>
             </header>
-
         </div>
-
     )
 }
